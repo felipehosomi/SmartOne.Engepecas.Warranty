@@ -1,4 +1,4 @@
-CREATE PROCEDURE SP_WARRANTY_NC_QUERY
+ALTER PROCEDURE SP_WARRANTY_NC_QUERY
 (
 	filterType	nvarchar(2),
 	number		nvarchar(50)
@@ -39,7 +39,7 @@ BEGIN
 		
 	FROM OSCL
 		INNER JOIN SCL6 ON SCL6."SrcvCallID" = OSCL."callID"
-		LEFT JOIN "@ENG_SERV_MULT" MULT ON MULT."U_Tipo" = "U_ENG_Tipo"
+		LEFT JOIN "@ENG_SERV_MULT" MULT ON MULT."U_Tipo" = "U_ENG_Tipo" AND IFNULL(OSCL."U_ENG_DataWC", OSCL."createDate") BETWEEN MULT."U_VigenciaDe" AND MULT."U_VigenciaAte"
 	WHERE (filterType = 'NC' AND "U_ENG_NC" = number)
 	OR (filterType = 'WC' AND "U_ENG_NumWC" = number)
 	ORDER BY OSCL."callID";

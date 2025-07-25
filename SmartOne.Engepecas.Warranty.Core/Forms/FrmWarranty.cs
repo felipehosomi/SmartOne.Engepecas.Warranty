@@ -25,7 +25,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
 
         public FrmWarranty()
         {
-
+            //FormCount++;
         }
 
         public FrmWarranty(MenuEvent menuEvent)
@@ -36,13 +36,6 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
         public FrmWarranty(ItemEvent itemEvent)
         {
             ItemEventInfo = itemEvent;
-        }
-
-        public override object Show()
-        {
-            Form = (Form)base.Show();
-            FormCount++;
-            return Form;
         }
 
         public object Show(WarrantyFilterModel warrantyFilterModel)

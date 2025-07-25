@@ -42,7 +42,7 @@ BEGIN
 		SCL6."U_ENG_GAR_LCM" "TransId"
 	FROM OSCL
 		INNER JOIN SCL6 ON SCL6."SrcvCallID" = OSCL."callID"
-		LEFT JOIN "@ENG_SERV_MULT" MULT ON MULT."U_Tipo" = "U_ENG_Tipo"
+		LEFT JOIN "@ENG_SERV_MULT" MULT ON MULT."U_Tipo" = "U_ENG_Tipo" AND IFNULL(OSCL."U_ENG_DataWC", OSCL."createDate") BETWEEN MULT."U_VigenciaDe" AND MULT."U_VigenciaAte"
 	WHERE (SCL6."U_ENG_GAR_DATA" = createDate OR createDate IS NULL)
 	AND (SCL6."U_ENG_GAR_COD" = IFNULL(warrantyCode, 0) OR warrantyCode = 0)
 	AND (SCL6."U_ENG_GAR_LCM" = IFNULL(transId, 0) OR transId = 0)
