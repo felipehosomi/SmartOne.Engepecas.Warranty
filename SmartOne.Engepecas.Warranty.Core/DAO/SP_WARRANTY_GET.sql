@@ -9,6 +9,9 @@ ALTER PROCEDURE SP_WARRANTY_GET
 LANGUAGE SQLSCRIPT
 AS
 BEGIN
+	IF YEAR(dateTo) = 1 THEN
+		dateTo = '21000101';
+	END IF;
 
 	SELECT
 		-- Header
@@ -42,13 +45,14 @@ BEGIN
 		SCL6."U_ENG_GAR_LCM" "TransId"
 	FROM OSCL
 		INNER JOIN SCL6 ON SCL6."SrcvCallID" = OSCL."callID"
+		INNER JOIN OSCT ON OSCT."callTypeID" = OSCL."callType" AND UPPER(OSCT."Name") = 'GARANTIA'
 		LEFT JOIN "@ENG_SERV_MULT" MULT ON MULT."U_Tipo" = "U_ENG_Tipo" AND IFNULL(OSCL."U_ENG_DataWC", OSCL."createDate") BETWEEN MULT."U_VigenciaDe" AND MULT."U_VigenciaAte"
-	WHERE OSCL."createDate" BETWEEN dateFrom AND dateTo
+	WHERE OSCL."createDate" BETWEEN IFNULL(dateFrom, '19000101') AND IFNULL(dateTo, '21000101')
 	AND (OSCL."U_ENG_NumWC" = IFNULL(wc, '') OR wc = '')
 	AND (OSCL."customer" = IFNULL(cardCode, '') OR IFNULL(cardCode, '') = '')
 	AND (OSCL."internalSN" = IFNULL(serial, '') OR IFNULL(serial, '') = '')
-	AND SCL6."U_ENG_Pago" = 'N'
-	AND OSCL."callType" = 2
+	AND SCL6."U_ENG_Pago" = 'N'		
 	AND (SCL6."U_ENG_RespHR" = 'JCB' OR SCL6."U_ENG_RespKM" = 'JCB' OR SCL6."U_ENG_RespNF" = 'JCB')
 	ORDER BY OSCL."callID";
-END; 
+END;
+
