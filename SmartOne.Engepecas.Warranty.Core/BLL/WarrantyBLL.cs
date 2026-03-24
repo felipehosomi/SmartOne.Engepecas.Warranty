@@ -85,10 +85,13 @@ namespace SmartOne.Engepecas.Warranty.Core.BLL
         {
             try
             {
-                object cancelled = CrudDAO.ExecuteScalar(String.Format(Hana.JournalEntry_IsCancelled, list[0].TransId));
-                if (cancelled == null)
+                if (list[0].TransId != 0)
                 {
-                    throw new Exception("Não é possível cancelar, verificar com financeiro para estornar o lançamento");
+                    object cancelled = CrudDAO.ExecuteScalar(String.Format(Hana.JournalEntry_IsCancelled, list[0].TransId));
+                    if (cancelled == null)
+                    {
+                        throw new Exception("Não é possível cancelar, verificar com financeiro para estornar o lançamento");
+                    }
                 }
 
                 foreach (WarrantyModel model in list)

@@ -25,7 +25,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
 
         public FrmWarranty()
         {
-            //FormCount++;
+            FormCount++;
         }
 
         public FrmWarranty(MenuEvent menuEvent)
@@ -153,6 +153,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                 Form.DataSources.UserDataSources.Item("ud_Total").Value = list.Sum(x => x.Balance).ToString();
                 Form.DataSources.UserDataSources.Item("ud_Date").Value = list[0].WarDate.ToString("dd/MM/yyyy");
                 Form.DataSources.UserDataSources.Item("ud_JE").Value = list[0].TransId.ToString();
+                //((EditText)Form.Items.Item("et_JE").Specific).Value = list[0].TransId.ToString();
 
                 if (list[0].TransId != 0)
                 {
@@ -215,7 +216,12 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                     it_Folder.Top = fl_Base.Item.Top;
                     it_Folder.Left = fl_Base.Item.Left + 10;
 
-                    ((Folder)it_Folder.Specific).DataBind.SetBound(true, "", $"ud_1");
+                    if (!formXml.Contains($"ud_{pane}"))
+                    {
+                        Form.DataSources.UserDataSources.Add($"ud_{pane}", BoDataType.dt_LONG_NUMBER, 10);
+                    }
+                    
+                    ((Folder)it_Folder.Specific).DataBind.SetBound(true, "", $"ud_{pane}");
                     ((Folder)it_Folder.Specific).Caption = $"{pane}";
                     ((Folder)it_Folder.Specific).Pane = pane;
                     //((Folder)it_Folder.Specific).ValOn = pane.ToString();
@@ -235,7 +241,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                     it_Title = Form.Items.Item($"st_{index}");
                 }
                 it_Title.Left = itemBase.Left + 10;
-                it_Title.Top = topBase + 60;
+                it_Title.Top = topBase + 50;
                 it_Title.Width = 600;
                 it_Title.FromPane = pane;
                 it_Title.ToPane = pane;
@@ -254,9 +260,9 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                 }
 
                 it_Grid.Left = itemBase.Left + 10;
-                it_Grid.Top = topBase + 75;
-                it_Grid.Width = 900;
-                it_Grid.Height = 150;
+                it_Grid.Top = topBase + 65;
+                it_Grid.Width = 1050;
+                it_Grid.Height = 140;
                 it_Grid.FromPane = pane;
                 it_Grid.ToPane = pane;
                 it_Grid.Visible = true;
@@ -413,6 +419,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                 int transId = warrantyBLL.GenerateJE(dueDate, docTotal, Form.DataSources.UserDataSources.Item("ud_Memo").Value, list);
                 SBOApp.Application.MessageBox("Lançamento efetuado com sucesso!");
                 Form.Items.Item("bt_JE").Enabled = false;
+                //((EditText)Form.Items.Item("et_JE").Specific).Value = transId.ToString();
                 Form.DataSources.UserDataSources.Item("ud_JE").Value = transId.ToString();
             }
             catch (Exception ex)

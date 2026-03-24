@@ -9,7 +9,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
     {
         public FrmWarrantyFilter()
         {
-
+            FormCount++;
         }
 
         public FrmWarrantyFilter(MenuEvent menuEvent)

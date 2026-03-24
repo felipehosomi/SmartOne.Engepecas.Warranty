@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SBO.Hub;
 using SBO.Hub.Helpers;
+using SBO.Hub.SBOHelpers;
+using SmartOne.Engepecas.Warranty.Core.DAO;
 
 namespace SmartOne.Engepecas.Warranty.Core.BLL
 {
@@ -23,6 +25,9 @@ namespace SmartOne.Engepecas.Warranty.Core.BLL
             {
                 SBOApp.Application.SetStatusBarMessage($"Erro ao criar menu: {ex.Message}");
             }
+
+            FormattedSearch formattedSearch = new FormattedSearch();
+            formattedSearch.AssignFormattedSearch("NC Lançados", Hana.WarrantyNC_FormattedSearch, "FrmWarranty", "et_WarCode");
 
         }
     }
