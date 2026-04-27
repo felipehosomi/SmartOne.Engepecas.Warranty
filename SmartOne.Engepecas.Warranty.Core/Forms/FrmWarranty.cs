@@ -94,7 +94,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                 }
                 else if (ItemEventInfo.EventType == BoEventTypes.et_VALIDATE && ItemEventInfo.ItemChanged)
                 {
-                    if (ItemEventInfo.ItemUID.StartsWith("gr_") && ItemEventInfo.ColUID == "A Receber")
+                    if (ItemEventInfo.ItemUID.StartsWith("gr_") && ItemEventInfo.ColUID == "Recebido")
                     {
                         CalculateTotal();
                     }
@@ -150,7 +150,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
             {
                 LoadScreen(list, true);
 
-                Form.DataSources.UserDataSources.Item("ud_Total").Value = list.Sum(x => x.Balance).ToString();
+                Form.DataSources.UserDataSources.Item("ud_Total").Value = list.Sum(x => x.Paid).ToString();
                 Form.DataSources.UserDataSources.Item("ud_Date").Value = list[0].WarDate.ToString("dd/MM/yyyy");
                 Form.DataSources.UserDataSources.Item("ud_JE").Value = list[0].TransId.ToString();
                 //((EditText)Form.Items.Item("et_JE").Specific).Value = list[0].TransId.ToString();
@@ -311,6 +311,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
 
                 ((EditTextColumn)gr_Warranty.Columns.Item("Valor Total")).ColumnSetting.SumType = BoColumnSumType.bst_Auto;
                 ((EditTextColumn)gr_Warranty.Columns.Item("A Receber")).ColumnSetting.SumType = BoColumnSumType.bst_Auto;
+                ((EditTextColumn)gr_Warranty.Columns.Item("Recebido")).ColumnSetting.SumType = BoColumnSumType.bst_Auto;
 
 
                 topBase += it_Title.Height + it_Grid.Height;
@@ -337,10 +338,10 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                 catch
                 {
                     break;
-                }
+                }   
             }
 
-            Form.DataSources.UserDataSources.Item("ud_Total").Value = list.Sum(x => x.Balance).ToString();
+            Form.DataSources.UserDataSources.Item("ud_Total").Value = list.Sum(x => x.Paid).ToString();
         }
 
         private void GenerateNC()

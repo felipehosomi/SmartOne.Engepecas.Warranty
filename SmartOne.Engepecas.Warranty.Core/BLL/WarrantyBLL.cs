@@ -25,7 +25,7 @@ namespace SmartOne.Engepecas.Warranty.Core.BLL
 
                 foreach (WarrantyModel model in list)
                 {
-                    string update = String.Format(Hana.Warranty_UpdateLine, model.NC, "Y", maxCode, date, 0, model.Id, model.Line);
+                    string update = String.Format(Hana.Warranty_UpdateLine, model.NC, "Y", maxCode, date, 0, model.Paid.ToString().Replace(",", "."), model.Id, model.Line);
                     CrudDAO.ExecuteNonQuery(update);
                 }
                 return Convert.ToInt32(maxCode);
@@ -96,7 +96,7 @@ namespace SmartOne.Engepecas.Warranty.Core.BLL
 
                 foreach (WarrantyModel model in list)
                 {
-                    string update = String.Format(Hana.Warranty_UpdateLine, "", "N", 0, "NULL", 0, model.Id, model.Line);
+                    string update = String.Format(Hana.Warranty_UpdateLine, "", "N", 0, "NULL", 0, 0, model.Id, model.Line);
                     CrudDAO.ExecuteNonQuery(update);
                 }
             }

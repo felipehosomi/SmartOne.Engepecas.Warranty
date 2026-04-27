@@ -17,6 +17,8 @@ namespace SmartOne.Engepecas.Warranty.Core.Model
         public double Total { get; set; }
         [HubModel(UIFieldName = "A Receber", Index = 60)]
         public double Balance { get; set; }
+        [HubModel(UIFieldName = "Recebido", Index = 65)]
+        public double Paid { get; set; }
         [HubModel(UIFieldName = "NC", Index = 70)]
         public string NC { get; set; }
         [HubModel(UIFieldName = "Baixar", Index = 80)]

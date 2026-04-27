@@ -26,6 +26,7 @@ BEGIN
 			WHEN SCL6."U_ENG_Tipo" = 'Atendimento HR' THEN SCL6."ActualDur" * MULT."U_Mult"
 			ELSE SCL6."U_ENG_NFValor" + (SCL6."U_ENG_NFValor" * MULT."U_Mult" / 100)
 		END "A Receber",
+		SCL6."U_ENG_RecebidoNC" "Recebido",
 		SCL6."U_ENG_NC" 	"NC",
 		OSCL."U_ENG_NumWC" 	"WC",
 		OSCL."custmrName" 	"Nome do Cliente",

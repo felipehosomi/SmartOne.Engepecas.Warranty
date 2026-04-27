@@ -100,6 +100,8 @@ namespace SmartOne.Engepecas.Warranty.Core.BLL
             userObject.InsertUserField("@ENG_PAINEL_HIST", "DataHora", "Data e hora", SAPbobsCOM.BoFieldTypes.db_Date, SAPbobsCOM.BoFldSubTypes.st_None, 11, false);
             userObject.InsertUserField("@ENG_PAINEL_HIST", "NumYell", "Numero Pedido Yelll", SAPbobsCOM.BoFieldTypes.db_Alpha, SAPbobsCOM.BoFldSubTypes.st_None, 100, false);
 
+            userObject.InsertUserField("SCL6", "ENG_RecebidoNC", "Recebido NC", SAPbobsCOM.BoFieldTypes.db_Float, SAPbobsCOM.BoFldSubTypes.st_Price, 100, false);
+
             //userObject.CreateUserTable("SOWARRANTY", "SO|Garantia", SAPbobsCOM.BoUTBTableType.bott_MasterData);
             //userObject.CreateUserTable("SOWARRANTY1", "SO|Garantia Linhas", SAPbobsCOM.BoUTBTableType.bott_MasterDataLines);
             //userObject.AddValidValueToUserField("OINV", "U_Checked", "N", "Não", true);

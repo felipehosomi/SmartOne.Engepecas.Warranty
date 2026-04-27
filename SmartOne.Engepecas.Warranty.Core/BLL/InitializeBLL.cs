@@ -29,6 +29,8 @@ namespace SmartOne.Engepecas.Warranty.Core.BLL
             FormattedSearch formattedSearch = new FormattedSearch();
             formattedSearch.AssignFormattedSearch("NC Lançados", Hana.WarrantyNC_FormattedSearch, "FrmWarranty", "et_WarCode");
 
+            SBOApp.AutoTranslateHana = false;
+
         }
     }
 }

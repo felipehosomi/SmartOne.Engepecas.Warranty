@@ -34,6 +34,7 @@ BEGIN
 			WHEN SCL6."U_ENG_Tipo" = 'Atendimento HR' THEN SCL6."ActualDur" * MULT."U_Mult"
 			ELSE SCL6."U_ENG_NFValor" + (SCL6."U_ENG_NFValor" * MULT."U_Mult" / 100)
 		END "Balance",
+		SCL6."U_ENG_RecebidoNC" "Paid",
 		SCL6."U_ENG_NC" "NC",
 		'Y' "Generate",
 		-- Control fields

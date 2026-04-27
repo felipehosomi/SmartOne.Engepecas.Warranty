@@ -106,8 +106,9 @@ namespace SmartOne.Engepecas.Warranty.Core.DAO {
         ///&quot;U_ENG_GAR_COD&quot; = {2},
         ///&quot;U_ENG_GAR_DATA&quot; = {3},
         ///&quot;U_ENG_GAR_LCM&quot; = {4},
-        ///WHERE &quot;SrcvCallID&quot; = {5}
-        ///AND &quot;Line&quot; = {6}.
+        ///&quot;U_ENG_RecebidoNC&quot; = {5}
+        ///WHERE &quot;SrcvCallID&quot; = {6}
+        ///AND &quot;Line&quot; = {7}.
         /// </summary>
         public static string Warranty_UpdateLine {
             get {

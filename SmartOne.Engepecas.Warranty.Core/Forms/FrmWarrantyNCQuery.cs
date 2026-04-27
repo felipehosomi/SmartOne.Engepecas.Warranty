@@ -45,6 +45,7 @@ namespace SmartOne.Engepecas.Warranty.Core.Forms
                         Grid gr_NC = (Grid)Form.Items.Item("gr_NC").Specific;
                         ((EditTextColumn)gr_NC.Columns.Item("Total")).ColumnSetting.SumType = BoColumnSumType.bst_Auto;
                         ((EditTextColumn)gr_NC.Columns.Item("A Receber")).ColumnSetting.SumType = BoColumnSumType.bst_Auto;
+                        ((EditTextColumn)gr_NC.Columns.Item("Recebido")).ColumnSetting.SumType = BoColumnSumType.bst_Auto;
 
                         Form.Freeze(false);
                     }

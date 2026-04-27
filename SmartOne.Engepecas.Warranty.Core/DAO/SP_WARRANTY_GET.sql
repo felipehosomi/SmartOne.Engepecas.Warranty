@@ -1,4 +1,4 @@
-ALTER PROCEDURE SP_WARRANTY_GET
+CREATE PROCEDURE SP_WARRANTY_GET
 (
 	dateFrom 	date,
 	dateTo		date,
@@ -39,6 +39,11 @@ BEGIN
 			WHEN SCL6."U_ENG_Tipo" = 'Atendimento HR' THEN SCL6."ActualDur" * MULT."U_Mult"
 			ELSE SCL6."U_ENG_NFValor" + (SCL6."U_ENG_NFValor" * MULT."U_Mult" / 100)
 		END "Balance",
+		CASE 
+			WHEN SCL6."U_ENG_Tipo" = 'Atendimento KM' THEN SCL6."U_ENG_KM" * MULT."U_Mult"
+			WHEN SCL6."U_ENG_Tipo" = 'Atendimento HR' THEN SCL6."ActualDur" * MULT."U_Mult"
+			ELSE SCL6."U_ENG_NFValor" + (SCL6."U_ENG_NFValor" * MULT."U_Mult" / 100)
+		END "Paid",
 		-- Control fields
 		SCL6."Line",
 		SCL6."U_ENG_GAR_DATA" "WarDate",
@@ -55,4 +60,3 @@ BEGIN
 	AND (SCL6."U_ENG_RespHR" = 'JCB' OR SCL6."U_ENG_RespKM" = 'JCB' OR SCL6."U_ENG_RespNF" = 'JCB')
 	ORDER BY OSCL."callID";
 END;
-

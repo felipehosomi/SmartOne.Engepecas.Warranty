@@ -137,8 +137,9 @@ SET "U_ENG_NC" = '{0}',
 "U_ENG_GAR_COD" = {2},
 "U_ENG_GAR_DATA" = {3},
 "U_ENG_GAR_LCM" = {4},
-WHERE "SrcvCallID" = {5}
-AND "Line" = {6}</value>
+"U_ENG_RecebidoNC" = {5}
+WHERE "SrcvCallID" = {6}
+AND "Line" = {7}</value>
   </data>
   <data name="Warranty_UpdateJE" xml:space="preserve">
     <value>UPDATE SCL6
