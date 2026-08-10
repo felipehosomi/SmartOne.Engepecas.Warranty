@@ -36,6 +36,7 @@ BEGIN
 			WHEN SCL6."U_ENG_Pago" = 'Y' THEN 'Sim'
 			ELSE 'Não'
 		END "Pago",
+		SCL6."U_ENG_RecebidoNC" "Recebido",
 		SCL6."U_ENG_GAR_LCM" "LCM"
 		
 	FROM OSCL

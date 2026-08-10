@@ -48,14 +48,31 @@ namespace SmartOne.Engepecas.Warranty.Core.BLL
                 je.DueDate = dueDate;
 
                 je.Lines.BPLID = configModel.BPLId;
-                je.Lines.AccountCode = configModel.DebitAccount;
+                if (configModel.DebitAccount.StartsWith("C") || configModel.DebitAccount.StartsWith("F"))
+                {
+                    je.Lines.ShortName = configModel.DebitAccount;
+                }
+                else
+                {
+                    je.Lines.AccountCode = configModel.DebitAccount;
+                }
+                    
                 je.Lines.Debit = docTotal;
                 je.Lines.LineMemo = memo;
 
                 je.Lines.Add();
 
                 je.Lines.BPLID = configModel.BPLId;
-                je.Lines.AccountCode = configModel.CreditAccount;
+
+                if (configModel.CreditAccount.StartsWith("C") || configModel.CreditAccount.StartsWith("F"))
+                {
+                    je.Lines.ShortName = configModel.CreditAccount;
+                }
+                else
+                {
+                    je.Lines.AccountCode = configModel.CreditAccount;
+                }
+
                 je.Lines.Credit = docTotal;
                 je.Lines.LineMemo = memo;
 
